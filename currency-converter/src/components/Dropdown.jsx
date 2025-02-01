@@ -1,26 +1,34 @@
-const CurrencyDropdown = ({
+import PropTypes from 'prop-types';
+
+export default function CurrencyDropdown({
 	currencies,
 	currency,
 	setCurrency,
 	favourites,
 	handleFavourite,
-	title,
-}) => {
+	title = '',
+}) {
 	return (
 		<div>
-			<label htmlFor={title}>{title}</label>
-
+			<label htmlFor={title} className=''>
+				{title}
+			</label>
 			<div>
-				<select>
-					{currencies?.map((currency) => {
-						<option value={currency} key={currency}>
-							{currency}
-						</option>;
-					})}
+				<select value={currency} onChange={e => setCurrency(e.target.value)}>
+					{currencies.map(currency => (
+						<option key={currency} value={currency}></option>
+					))}
 				</select>
 			</div>
 		</div>
 	);
-};
+}
 
-export default CurrencyDropdown;
+CurrencyDropdown.propTypes = {
+	currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+	currency: PropTypes.string.isRequired,
+	setCurrency: PropTypes.func.isRequired,
+	favourites: PropTypes.arrayOf(PropTypes.string),
+	handleFavourite: PropTypes.func,
+	title: PropTypes.string,
+};
