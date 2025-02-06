@@ -12,14 +12,14 @@ export const ThemeProvider = ({ children }) => {
 	const [isDarkMode, setIsDarkMode] = useState(false);
 
 	const toggleTheme = () => {
-		setIsDarkMode((prevMode) => !prevMode);
+		setIsDarkMode((prevState) => !prevState);
 	};
 
 	const theme = isDarkMode ? 'dark' : 'light';
 
 	useEffect(() => {
 		document.documentElement.setAttribute('data-theme', theme);
-	}, [isDarkMode]);
+	}, [isDarkMode, theme]);
 
 	return (
 		<ThemeContext.Provider value={{ theme, toggleTheme }}>

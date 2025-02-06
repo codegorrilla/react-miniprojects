@@ -37,6 +37,15 @@ const usePasswordGenerator = () => {
 					break;
 			}
 		});
+
+		for (let i = 0; i < length; i++) {
+			const randomIndex = Math.floor(Math.random() * charset.length);
+
+			generatedPassword += charset[randomIndex];
+
+			setPassword(generatedPassword);
+			setErrorMessage('');
+		}
 	};
 
 	return { password, errorMessage, generatedPassword };
